@@ -4,13 +4,14 @@ import { fetchPosts } from '../features/post/postsSlice';
 
 const UserCard = () => {
 
+
     const { posts, isLoading, isError } = useSelector((state) => state.posts);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(fetchPosts())
     }, [dispatch])
-    // console.log(posts);
+
 
 
     if (isLoading) {
