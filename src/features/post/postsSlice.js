@@ -3,9 +3,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const fetchPosts = createAsyncThunk(
     'posts/fetchPosts',
     async () => {
-        const response = await fetch('https://jsonplaceholder.typicode.com/users');
-        if(!response){
-            throw new Error('Failed to fetch data');
+        const response = await fetch('https://fakestoreapiserver.reactbd.com/users');
+        if(!response.ok){
+            throw new Error("hello i am error")
+            // thunkApi.rejectWithValue("response was not okay")
         }
         return response.json()
     }
@@ -14,7 +15,7 @@ export const fetchPosts = createAsyncThunk(
 const initialState = {
     posts: [],
     isLoading: false,
-    isError: ''
+    isError: null
 }
 
 const postsSlice = createSlice({
@@ -23,19 +24,16 @@ const postsSlice = createSlice({
     extraReducers: (builder) => {
         builder
                 .addCase(fetchPosts.pending, (state) => {
-                    state.isError = '',
                     state.isLoading = true
                 })
                 .addCase(fetchPosts.fulfilled, (state, action) => {
-                    state.isError = '',
-                    state.isLoading = false,
+                    state.isLoading = false;
                     state.posts = action.payload
                 })
                 .addCase(fetchPosts.rejected, (state, action) => {
-                    state.isLoading = false,
+                    state.isLoading = false;
                     state.isError = action.error?.message || "Something went wrong!"
-                    console.log(state.isError);
-                    console.log(state.error);
+                    console.log(action.error);
                 })
     }
 });

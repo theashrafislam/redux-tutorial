@@ -1,5 +1,6 @@
 import Counter from "./components/Counter"
-import UserCard from "./components/UserCard"
+import ProductsCard from "./components/ProductsCard"
+// import UserCard from "./components/UserCard"
 
 function App() {
 
@@ -12,7 +13,8 @@ function App() {
         <Counter />
 
         <div className="max-w-7xl mx-auto">
-          <UserCard />
+          {/* <UserCard /> */}
+          <ProductsCard />
         </div>
 
       </div>

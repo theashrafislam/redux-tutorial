@@ -38,7 +38,6 @@ const UserCard = () => {
                         <p><strong>Zipcode:</strong> {post?.address?.zipcode}</p>
                     </div>
                 </div>
-
             )}
         </div>
     );
